@@ -1,0 +1,18 @@
+The given grid contains at most 1 connected region. Your task is to calculate the number of free cells meeting the following constraint:
+
+*if this cell is blocked, the number of connected regions becomes exactly 3
+
+Тиймээс DFS яваад хэдэн хэсэг бгаг амархан шалгаж болох бөгөөд 
+тэр нь угаасаа 1 юму 0 байх бөгөөд
+
+0 байвал мэдээж бүх нүд blocked тул 3 хувааж чадахгүй
+1 байвал 
+block-лох гэж бгаа нүдээ A гэвэл
+ийм нөхцөлд л 3 хэсэг болгож чадна
+.A.
+X.X 
+эсвэл
+X.X
+.A. 
+
+(би The given grid contains at most 1 connected region үүнийг харалгүй баахан гайхаж суусан)
