@@ -1,0 +1,57 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+using ll = long long ;
+int main() {
+//	freopen("moocast.in", "r", stdin);
+//	freopen("moocast.out", "w", stdout);
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	ll t, n, m, ans, s, sum, cnt, x, y, r, p, i, j;
+
+	cin >> t;
+
+	while ( t --) {
+		cin >> n;
+		
+		
+		ll a[n + 2], b[n + 2], c[n + 2], mn[n + 2];
+		for (i = 1; i <= n; i ++) {
+			cin >> a[i];
+			c[i] = 0;
+			mn[i] = 1e9 + 1;
+		}
+		for (i = 2; i <= n; i ++) {
+			cin >> b[i];
+			c[b[i]] ++;
+		}
+		queue < ll > q;
+		for (i = 1; i <= n; i ++) {
+			if (c[i] == 0) q.push(i);
+		}
+		while(!q.empty()) {
+			r = q.front();
+			q.pop();
+			if ( r == 1)break;
+			s = b[r];
+			c[s] --;
+			if ( c[s] == 0) {
+				q.push(s);
+			}
+			if ( mn[r] == 1e9 + 1) {
+				mn[s]= min(mn[s], a[r]);
+			}
+			else {
+				if ( mn[r] > a[r]) {
+					mn[s] = min(mn[s], (mn[r] + a[r])/2);
+				}
+				else mn[s] = min(mn[s], min(mn[r], a[r]));
+			}
+			
+		}
+		cout<< mn[1] + a[1] << endl;
+		
+
+	}
+}
+ 
