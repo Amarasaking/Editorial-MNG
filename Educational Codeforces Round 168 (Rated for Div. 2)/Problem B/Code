@@ -1,0 +1,102 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+using ll = long long ;
+int main() {
+//	freopen("moocast.in", "r", stdin);
+//	freopen("moocast.out", "w", stdout);
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	ll t, n, m, ans, s, sum, cnt, x, y, r, p, i, j;
+
+	cin >> t;
+
+	while ( t --) {
+		cin >> n;
+		
+		string str[3];
+		
+		ll a[3][n + 2];
+		cin >> str[1] >> str[2];
+		str[1]= "." + str[1];
+		str[2]= "." + str[2];
+		for (i = 1; i <= n; i ++) a[1][i] = a[2][i] = 0;
+		cnt = 0;
+// BFS
+// cnt- хэдэн хэсэг бгааг илэрхийлж бгаа
+		for (i = 1; i <= n; i ++) {
+			if ( str[1][i] == '.' && a[1][i] == 0) {
+				cnt ++;
+				queue < ll > X, Y;
+				X.push(1);
+				Y.push(i);
+				while(!X.empty()) {
+					x = X.front();
+					y = Y.front();
+					X.pop();
+					Y.pop();
+					if ( a[x][y] == 0 && str[x][y] == '.') {
+						a[x][y] = cnt;
+						if ( a[3 - x][y] == 0 && str[3 - x][y] == '.') {
+							X.push(3 - x);
+							Y.push(y);					
+						}
+						if ( a[x][y + 1] == 0 && str[x][y + 1] == '.' && y >= 1 && y <= n) {
+							X.push(x);
+							Y.push(y + 1);					
+						}
+						if ( a[x][y - 1] == 0 && str[x][y - 1] == '.' && y >= 1 && y <= n) {
+							X.push(x);
+							Y.push(y - 1);					
+						}
+					}
+				}
+			}
+			if ( str[2][i] == '.' && a[2][i] == 0) {
+				cnt ++;
+				queue < ll > X, Y;
+				X.push(2);
+				Y.push(i);
+				while(!X.empty()) {
+					x = X.front();
+					y = Y.front();
+					X.pop();
+					Y.pop();
+					if ( a[x][y] == 0 && str[x][y] == '.') {
+						a[x][y] = cnt;
+						if ( a[3 - x][y] == 0 && str[3 - x][y] == '.') {
+							X.push(3 - x);
+							Y.push(y);					
+						}
+						if ( a[x][y + 1] == 0 && str[x][y + 1] == '.' && y >= 1 && y <= n) {
+							X.push(x);
+							Y.push(y + 1);					
+						}
+						if ( a[x][y - 1] == 0 && str[x][y - 1] == '.' && y >= 1 && y <= n) {
+							X.push(x);
+							Y.push(y - 1);					
+						}
+					}
+				}
+			}
+		}
+
+		ans =0;
+		if ( cnt == 1) {
+			for (i = 1; i <= 2; i ++) {
+				for (j = 2; j < n; j ++) {
+					if ( str[i][j] == '.') {
+						if ( str[3 - i][j + 1] == 'x' && str[3 - i][j - 1] == 'x' && str[3 - i][j] == '.' && str[i][j + 1] == '.' && str[i][j - 1] == '.') ans ++;
+					}
+				}
+			}
+			cout << ans << endl;
+			continue;
+		}
+		cout << 0 << endl;
+		
+		
+
+	}
+}
+ 
