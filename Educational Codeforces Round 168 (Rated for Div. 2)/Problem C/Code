@@ -1,0 +1,58 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+using ll = long long ;
+int main() {
+//	freopen("moocast.in", "r", stdin);
+//	freopen("moocast.out", "w", stdout);
+	ios::sync_with_stdio(false);
+	cin.tie(NULL);
+	ll t, n, m, ans, s, sum, cnt, x, y, r, p, i, j;
+
+	cin >> t;
+
+	while ( t --) {
+		cin >> n;
+		
+		string str;
+		
+		cin >> str;
+		
+		str = "." + str;
+		s = 0;
+		for (i = 1; i <= n; i ++) {
+			if ( str[i] == '_') {
+				if ( s > 0) {
+					s --;
+					str[i] = ')';
+				}
+				else {
+					s ++;
+					str[i] = '(';
+				}
+			}
+			else {
+				if ( str[i] == ')') s --;
+				else s ++;
+			}
+		}
+		ans = 0;
+		stack < ll > st;
+		
+		for (i =1 ; i <= n; i ++) {
+			if ( str[i] == '(') {
+				st.push(i);
+			}	
+			else {
+				r = st.top();
+				st.pop();
+				ans += (i - r);
+			}
+		}
+		cout << ans << endl;
+		
+		
+
+	}
+}
+ 
